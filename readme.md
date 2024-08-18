@@ -1,28 +1,54 @@
-### ABOUT THE PROJECT
-    * This project requires Java 17 to be installed on your system. Please make sure you have Java 17 installed before proceeding.
+****Overview****
+The code implements a movie ticket booking system using an object-oriented approach. It consists of several classes and interfaces that manage shows, seats, bookings, and revenue calculation. Here’s a brief explanation of the design made in the code:
+Key Classes and Interfaces:
 
-## Important Instruction
-    * Please note that a Scanner object has already been instantiated within the Start class for input purposes. Therefore, please DO NOT CREATE a new object for input; you can utilize the existing Scanner object.
-    * Please ensure that your input and output precisely match the given problem statement, and refrain from printing any additional information.
+**1. SeatCategory Enum:**
+   - Represents different categories of seats with associated costs.
+   - The categories are `PLATINUM`, `GOLD`, and `SILVER`, each with a different cost.
 
-### 1. **Dependency Management**:
-    * Maven is used as the dependency management tool for this project.
-    * The project already has the JUnit testing library installed as a dependency.
+**2. ShowRepository Interface:**
+   - Defines methods for accessing and updating seat information for a specific show.
+   - Includes `getSeatsForShow(int showNumber)` and `updateSeats(int showNumber, Map<String, SeatCategory> seats)`.
 
-### 2. **Starting Point**:
-    * Inside the project, you will find a class called Start which contains the main method.
-    * The Start class serves as the entry point for the project. You can start the execution of the project from this class.
+**3. ShowRepositoryImpl Class**:
+   - Implements `ShowRepository`.
+   - Manages the storage and initialization of seat data for different shows.
+   - Initializes three shows with predefined seat allocations.
 
-### 3. **Writing Problem Statement Name in problem-statement.json file**:
-    * There is a file present inside the root folder of the pom.xml with name problem-statement.json
-    * Please write the problem statement name given to you inside problem-statement.json file
-    * Example if you are given movie booking problem statement just remove the place holder 'your problem statement name here' and write movie booking
+**4. Booking Class:**
+   - Handles the processing of booking costs, including the calculation of various taxes (Service Tax, Swachh Bharat Cess, Krishi Kalyan Cess).
+   - Manages the total revenue generated from bookings.
 
-### 4. **Submitting The Project**:
-    * Once you have finished coding and are ready to submit the project, please follow the given instructions to zip the project.
-    * Select the maven-project folder (root folder of the pom.xml file).
-    * Create the .zip file for the selected maven-project with your favourite tool.
-    * Name the zip file as NAME_PROBLEM STATEMENT
-    * Submit the NAME_PROBLEM STATEMENT.zip file
-    * For instance, if you have been given the problem statement "movie booking" and your name is "ankit," the corresponding zip file name should be "ankit_movie booking.zip." 
+**5. Show Class:**
+   - Manages the seats for a specific show.
+   - Allows booking of seats and calculates the total cost based on the seats booked.
+   - Removes booked seats from availability.
 
+**6. ShowService Class:**
+   - Acts as a mediator between the `ShowRepository` and `Booking` classes.
+   - Provides methods to display available seats, book seats, and print booking summaries.
+   - Handles the logic of seat booking, including checking availability and updating seat data.
+
+**7. MovieBookingSystem Class:**
+   - The main entry point for the application.
+   - Interacts with the user, allowing them to choose a show, book seats, and display booking summaries.
+   - Uses a `Scanner` for input and interacts with `ShowService` to perform operations.
+
+****Design and Flow****
+
+**1. Initialization:**
+   - `ShowRepositoryImpl` is initialized with three shows, each having a predefined set of seats with associated categories.
+
+**2. Booking Flow:**
+   - The user is prompted to enter a show number.
+   - Available seats for the selected show are displayed.
+   - The user selects seats to book.
+   - The `ShowService` class checks if the seats are available, calculates the cost, and processes the booking.
+   - The booking is confirmed, and the total cost including taxes is displayed.
+   - The system updates the available seats for the show.
+
+**3. Tax Calculation:**
+   - `Booking` class calculates Service Tax (14%), Swachh Bharat Cess (0.5%), and Krishi Kalyan Cess (0.5%) on the total cost of the booked seats.
+
+**4. Error Handling:**
+   - Custom exceptions like `SeatAlreadyBookedException` and `InvalidInputException` are used to handle specific error cases (e.g., booking unavailable seats, invalid show numbers).
