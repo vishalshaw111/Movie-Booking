@@ -1,5 +1,5 @@
 ****Overview****
-The code implements a movie ticket booking system using an object-oriented approach. It consists of several classes and interfaces that manage shows, seats, bookings, and revenue calculation. Here’s a brief explanation of the design made in the code:
+The code implements a movie ticket booking system using an object-oriented approach, its a console based application. It consists of several classes and interfaces that manage shows, seats, bookings, and revenue calculation. Here’s a brief explanation of the design made in the code:
 Key Classes and Interfaces:
 
 **1. SeatCategory Enum:**
